@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>LED Web App</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    var command, pixelArray = [];
+    var r, g, b, wave, flash, flow, dir, dur, lastPattern, lastLed, addressable, nonAddressable;
+
+    	function setRed(slider, textbox) {
+			textbox.value = slider.value;
+			r = textbox.value;
+		}
+
+		function setGreen(slider, textbox) {
+			textbox.value = slider.value;
+			g = textbox.value;
+		}
+
+		function setBlue(slider, textbox) {
+			textbox.value = slider.value;
+			b = textbox.value;
+		}
+
+		function setAddressable(text) {
+			addressable = text;
+			lastLed = text;
+		}
+
+		function setNonAddressable(text) {
+			nonAddressable = text;
+			lastLed = text;
+			// document.getElementById("flow").disabled = true;
+		}
+
+		function setWave(text) {
+			wave = text;
+			lastPattern = text;
+		}
+
+		function setFlash(text) {
+			flash = text;
+			lastPattern = text;
+		}
+
+
+		function setFlow(text) {
+			flow = text;
+			lastPattern = text;
+			pixelArray = [0,5,10,15,18,21,24];
+		}
+
+
+
+		function setDirection(text) {
+			dir =',' + text;
+		}
+
+		function setPeriod(slider, textbox) {
+			textbox.value = slider.value;
+			//harcoded the pattern shape and timestamp
+			dur = ',0,15,' + textbox.value;
+		}
+
+
+		function sendPattern() {
+
+			var red, green, blue;
+			if(r && g && b && (wave || flow || flash) && dir && dur &&  (addressable || nonAddressable) ) {
+				if( lastLed === 'addressable') {
+					command = 'x';
+					red = ',' + Math.floor(r / 255) ;
+					green = ',' + Math.floor(g / 255) ;
+					blue = ',' + Math.floor(b / 255) ;
+				} else if (lastLed === 'nonAddressable') {
+					command = 'y';
+					red = ',' + (65535 - r);
+					green = ',' + (65535 - g);
+					blue = ',' + (65535 - b);
+				}
+				if (lastPattern === 'wave') {
+					command = command + wave + red + green + blue + dir + dur;
+				} else if (lastPattern === 'flash') {
+					command = command + flash + red + green + blue + dir + dur;
+				} else if(lastPattern === 'flow') {
+					var pixels = '[' + pixelArray.join(';') + ']';
+					command = command + flow + red + green + blue + dir + dur + ',' + pixels;
+				}
+			}
+			
+			var request = new XMLHttpRequest();
+				// if (typeof pixelArray !== 'undefined' && pixelArray.length > 0) {
+					
+				// 	// GET /message/command, and make an asynchronous request:
+				// 	request.open( "GET", '/message/' + command, true );
+				// 	// close the request:
+				// 	request.send( null );
+				// } else {
+
+				// GET /message/command, and make an asynchronous request:
+				request.open( "GET", '/message/' + command, true );
+				// close the request:
+				request.send( null );
+				
+				// }
+				// history.go(0);
+				if( lastLed === 'addressable') {
+					command = 'x';
+				} else if (lastLed === 'nonAddressable') {
+					command = 'y';
+				}
+		}
+
+		function clearPattern() {
+			var clearCommand = 'xflash,0,0,0,up,0,5,1000'
+			
+			var request = new XMLHttpRequest();
+				// if (typeof pixelArray !== 'undefined' && pixelArray.length > 0) {
+					
+				// 	// GET /message/command, and make an asynchronous request:
+				// 	request.open( "GET", '/message/' + command, true );
+				// 	// close the request:
+				// 	request.send( null );
+				// } else {
+
+				// GET /message/command, and make an asynchronous request:
+				request.open( "GET", '/message/' + clearCommand, true );
+				// close the request:
+				request.send( null );
+				
+				// }
+				// history.go(0);
+				command = 'x';
+		}
+
+
+	 </script>
+	 
+    <style>
+    	#r{color:#cc0000;}    	
+    	#g{color:#00cc00;}	
+    	#b{color:#0000cc;}
+    </style>
+	 </head>
+	<body>
+
+	<div class="jumbotron">
+	    <h1 class="text-center">iTV Actuators Web App <br/><small>Control your real world devices from the Internet!</small></h1> 
+	    <p class="text-center">Sandesh | Nachiket | Akshitha</p> 
+  	</div>
+	<div class="container-fluid">
+		<div class="row">
+	    	<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center">LED Strip Type </h5>
+	    	</div>
+	  		<div class="col-md-4 text-center" style="background-color:#FFFFF;">
+	  			<!-- <div class="btn-group btn-group-md"> -->
+					<input type="button" class="btn btn-primary" id="addressable" style="background-color:#A43ADE;" value="Addressable" onclick="setAddressable('addressable');">
+					<input type="button" class="btn btn-primary" style="background-color:#A43ADE" id="non-addressable" value="Non Addressable" onclick="setNonAddressable('nonAddressable');">
+				<!-- </div> -->
+			</div>
+		</div>
+		<div class="row">
+	    	<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center">Pattern Type </h5>
+	    	</div>
+	  		<div class="col-md-4 text-center" style="background-color:#FFFFF;">
+	  			<div class="btn-group btn-group-md">
+					<input type="button" class="btn btn-primary" id="flash" value="Flash" onclick="setFlash('flash');">
+					<input type="button" class="btn btn-primary" id="wave" value="Wave" onclick="setWave('wave');">
+					<input type="button" class="btn btn-primary" id="flow" value="Flow	" onclick="setFlow('flow');">
+				</div>
+			</div>
+		</div>
+		<!-- Color Sliders -->
+		<div class="row">
+			<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center">Red Color </h5></div>
+			<div class="col-md-4 text-center" style="background-color:#d9534f;">
+				<form class="form-inline" role="form">
+		    		<div class="form-group">
+						<input type="range" id="redSlider" min="0" max="65535" size=4 onchange="setRed(this, r);">
+					</div>
+		    		<div class="form-group">
+						<input type="text" id="r" size=4><br/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center">Green Color </h5></div>
+			<div class="col-md-4 text-center" style="background-color:#5cb85c;">
+				<form class="form-inline" role="form">
+		    		<div class="form-group">
+						<input type="range" id="greenSlider" min="0" max="65535" size=4 onchange="setGreen(this, g);">
+					</div>
+		    		<div class="form-group">
+						<input type="text" id="g" size=4><br/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center">Blue Color </h5></div>
+			<div class="col-md-4 text-center" style="background-color:#337ab7;">
+				<form class="form-inline" role="form">
+		    		<div class="form-group">
+						<input type="range" id="blueSlider" min="0" max="65535" size=4 onchange="setBlue(this, b);">
+					</div>
+		    		<div class="form-group">
+						<input type="text" id="b" size=4><br/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center"> Direction </h5></div>
+			<div class="col-md-4 text-center" style="background-color:#FFFFF;">
+				<form class="form-inline" role="form">
+		    		<button type="button" class="btn btn-info" onclick="setDirection('left')">
+    					<span class="glyphicon glyphicon-chevron-left"></span>
+  					</button>
+
+			  		<button type="button" class="btn btn-info" onclick="setDirection('right')">
+			    		<span class="glyphicon glyphicon-chevron-right"></span>
+			  		</button>
+
+			  		<button type="button" class="btn btn-info" onclick="setDirection('up')">
+			    		<span class="glyphicon glyphicon-chevron-up"></span>
+			  		</button>
+
+			  		<button type="button" class="btn btn-info" onclick="setDirection('down')">
+			    		<span class="glyphicon glyphicon-chevron-down"></span>
+			  		</button>
+
+			  		<button type="button" class="btn btn-info" onclick="setDirection('none')">
+			    		none
+			  		</button>
+			  		<br/>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4" style="background-color:#FFFFF;" > <h5 class="text-center"> Duration </h5></div>
+			<div class="col-md-4 text-center" style="background-color:#f0ad4e;">
+				<form class="form-inline" role="form">
+		    		<div class="form-group">
+						<input type="range" id="period" min="0" max="4000"  onchange="setPeriod(this, p);">
+					</div>
+		    		<div class="form-group">
+						<input type="text" id="p" size=4><br/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<br/>
+	  		<div class="col-md-4 text-center" style="background-color:#FFFFF	">
+	  			<input type="button" id="clear" class="btn btn-default" value="Clear" onclick="clearPattern();">
+			</div>
+			<div class="col-md-4 text-center" style="background-color:#FFFFF	">
+	  			<input type="button" id="submit" class="btn btn-success" value="Show Pattern" onclick="sendPattern();">
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

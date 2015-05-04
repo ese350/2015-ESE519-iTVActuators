@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>LED Web App</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ 	<script type="text/javascript">
+ 		function sendPattern(command) {
+			var request = new XMLHttpRequest();
+				request.open( "GET", '/shape/' + command, true );
+				// close the request:
+				request.send( null );
+		}
+ 	</script>
+    </head>
+    <body>
+		<div class="jumbotron">
+		    <h1 class="text-center">iTV Actuators Web App <br/><small>Control your real world devices from the Internet!</small></h1> 
+		    <p class="text-center"> Choose your shape </p> 
+	  	</div>
+	  	<div class="container-fluid">
+		  	<!-- <div class="col-md-4">
+		      <a href="/shape/triangle" class="thumbnail">
+		        <p>Triangle</p>    
+		        <img src="http://latex.artofproblemsolving.com/b/9/f/b9f66589699e0620c39d48bae768b9de78aaa3a2.png" alt="Pulpit Rock" style="width:150px;height:150px">
+		      </a>
+    		</div> -->
+    		<div class="row">
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('X');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://xlab.upenn.edu/image/icon.gif" class="thumbnail" alt="letter-x" style="width:150px;height:150px"> X </button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('L');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://li.c-b.co/is/image/LandOfNod/Letter_Giant_Enough_L_232165_LL/$web_zoom$&wid=550&hei=550&/1308310656/not-giant-enough-letter-l.jpg" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> L </button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('A');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://li.c-b.co/is/image/LandOfNod/Letter_Giant_Enough_A_231533_LL/$web_zoom$&wid=550&hei=550&/1308310656/not-giant-enough-letter-a.jpg" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> A </button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('B');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://li.c-b.co/is/image/LandOfNod/Letter_Giant_Enough_B_231606_LL/$web_zoom$&wid=550&hei=550&/1308310656/not-giant-enough-letter-b.jpg" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> B </button>
+				</div>
+			</div>
+			<div class="row">
+			<br/>
+			<br/>
+			</div>
+			<div class="row">
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('triangle');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://latex.artofproblemsolving.com/b/9/f/b9f66589699e0620c39d48bae768b9de78aaa3a2.png" class="thumbnail" alt="Triangle" style="width:150px;height:150px"> Triangle</button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('<');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://www.clker.com/cliparts/Z/n/k/Z/y/j/left-arrow-gray-hi.png" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> < </button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('>');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://guidelinesandprinciples.org/assessment/upload/surveys/117344/images/arrow_right_grey.png" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> > </button>
+				</div>
+				<div class="col-md-3 text-center" style="background-color:#FFFFF">
+					<button type="submit" onclick="sendPattern('line');" class="btn btn-default" style="background-color:#FFFFF"><img src="http://docs.gimp.org/en/images/tutorials/straight-lines-6.png" class="thumbnail" alt="right-arrow" style="width:150px;height:150px"> Line </button>
+				</div>
+			</div>
+		</div>
+  	</body>
+</html>
