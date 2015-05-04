@@ -1,1 +1,1 @@
-Timestamp version
+Removed LPD8806 library

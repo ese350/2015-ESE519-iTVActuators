@@ -346,9 +346,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--gnu --no_rtti </MiscControls>
-              <Define> TARGET_LPC1768,  TARGET_M3,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC176X,  TARGET_MBED_LPC1768,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M3,  ARM_MATH_CM3,  MBED_BUILD_TIMESTAMP=1429834137.17,  __MBED__=1,  __ASSERT_MSG, </Define>
+              <Define> TARGET_LPC1768,  TARGET_M3,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC176X,  TARGET_MBED_LPC1768,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M3,  ARM_MATH_CM3,  MBED_BUILD_TIMESTAMP=1430777836.15,  __MBED__=1,  __ASSERT_MSG, </Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  LPD8806;  TLC59711;  TLC59711/SWSPI;  mbed;  mbed/TARGET_LPC1768;  mbed/TARGET_LPC1768/TARGET_NXP;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/TARGET_MBED_LPC1768;  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD;  MRF24J40;  mbed-rtos;  mbed-rtos/rtx;  mbed-rtos/rtx/TARGET_CORTEX_M;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M3;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M3/TOOLCHAIN_ARM;  mbed-rtos/rtos;  </IncludePath>
+              <IncludePath>  .;  MRF24J40;  LPD8806;  mbed-rtos;  mbed-rtos/rtos;  mbed-rtos/rtx;  mbed-rtos/rtx/TARGET_CORTEX_M;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M3;  mbed-rtos/rtx/TARGET_CORTEX_M/TARGET_M3/TOOLCHAIN_ARM;  mbed;  mbed/TARGET_LPC1768;  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD;  mbed/TARGET_LPC1768/TARGET_NXP;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/TARGET_MBED_LPC1768;  </IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -381,17 +381,17 @@
             <IncludeLibsPath></IncludeLibsPath>
             <Misc>
             
-              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/cmsis_nvic.o
+              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/retarget.o
             
               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/system_LPC17xx.o
             
-              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/sys.o
-            
               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/board.o
             
-              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/retarget.o
+              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/cmsis_nvic.o
             
               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/startup_LPC17xx.o
+            
+              mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/sys.o
             
               mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD/mbed.ar
             
@@ -415,9 +415,145 @@
             </File>
           
             <File>
+              <FileName>rt_Semaphore.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Event.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_List.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Mutex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>HAL_CM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
               <FileName>rt_Task.c</FileName>
               <FileType>1</FileType>
               <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Task.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_CMSIS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_System.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</FilePath>
+              
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>--c99</MiscControls>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+              
+            </File>
+          
+            <File>
+              <FileName>rt_Time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</FilePath>
               
               <FileOption>
                 <FileArmAds>
@@ -466,91 +602,6 @@
             </File>
           
             <File>
-              <FileName>rt_Mailbox.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_System.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_System.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_CMSIS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_CMSIS.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_Event.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Event.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_Semaphore.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Semaphore.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
               <FileName>RTX_Conf_CM.c</FileName>
               <FileType>1</FileType>
               <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/RTX_Conf_CM.c</FilePath>
@@ -568,60 +619,9 @@
             </File>
           
             <File>
-              <FileName>rt_Time.c</FileName>
+              <FileName>rt_Mailbox.c</FileName>
               <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Time.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_Mutex.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mutex.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>rt_List.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_List.c</FilePath>
-              
-              <FileOption>
-                <FileArmAds>
-                  <Cads>
-                    <VariousControls>
-                      <MiscControls>--c99</MiscControls>
-                    </VariousControls>
-                  </Cads>
-                </FileArmAds>
-              </FileOption>
-              
-            </File>
-          
-            <File>
-              <FileName>HAL_CM.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/HAL_CM.c</FilePath>
+              <FilePath>mbed-rtos/rtx/TARGET_CORTEX_M/rt_Mailbox.c</FilePath>
               
               <FileOption>
                 <FileArmAds>
@@ -653,16 +653,23 @@
             </File>
           
             <File>
-              <FileName>main.cpp</FileName>
+              <FileName>led_patterns.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>main.cpp</FilePath>
+              <FilePath>led_patterns.cpp</FilePath>
               
             </File>
           
             <File>
-              <FileName>led_patterns.cpp</FileName>
+              <FileName>testmain.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>led_patterns.cpp</FilePath>
+              <FilePath>testmain.cpp</FilePath>
+              
+            </File>
+          
+            <File>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>main.cpp</FilePath>
               
             </File>
           
@@ -674,27 +681,6 @@
             </File>
           
             <File>
-              <FileName>LPD8806.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>LPD8806/LPD8806.cpp</FilePath>
-              
-            </File>
-          
-            <File>
-              <FileName>TLC59711.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>TLC59711/TLC59711.cpp</FilePath>
-              
-            </File>
-          
-            <File>
-              <FileName>SWSPI.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>TLC59711/SWSPI/SWSPI.cpp</FilePath>
-              
-            </File>
-          
-            <File>
               <FileName>MRF24J40.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>MRF24J40/MRF24J40.cpp</FilePath>
@@ -702,9 +688,9 @@
             </File>
           
             <File>
-              <FileName>RtosTimer.cpp</FileName>
+              <FileName>LPD8806.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/RtosTimer.cpp</FilePath>
+              <FilePath>LPD8806/LPD8806.cpp</FilePath>
               
             </File>
           
@@ -716,6 +702,13 @@
             </File>
           
             <File>
+              <FileName>Semaphore.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>mbed-rtos/rtos/Semaphore.cpp</FilePath>
+              
+            </File>
+          
+            <File>
               <FileName>Mutex.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>mbed-rtos/rtos/Mutex.cpp</FilePath>
@@ -723,9 +716,9 @@
             </File>
           
             <File>
-              <FileName>Semaphore.cpp</FileName>
+              <FileName>RtosTimer.cpp</FileName>
               <FileType>8</FileType>
-              <FilePath>mbed-rtos/rtos/Semaphore.cpp</FilePath>
+              <FilePath>mbed-rtos/rtos/RtosTimer.cpp</FilePath>
               
             </File>
           

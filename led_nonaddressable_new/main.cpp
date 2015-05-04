@@ -12,15 +12,101 @@ TLC59711 tlc(1, p10, p8);
 char rxBuffer[128];
 int rxLen;
 
-/*Extracts the individual strings and saves them into a vector*/
-std::vector<std::string> split(const std::string &str, char delimiter, std::vector<std::string> extract)
+//Parses the received string and creates a pattern based on the parameters
+void parser(char s[])
 {
-    std::stringstream ss(str);
-    std::string item;
-    while (std::getline(ss, item, delimiter)) {
-        extract.push_back(item);
-    }
-    return extract;
+    char *p;
+    int i = 0;
+    int red = -1, green = -1, blue = -1;
+    pattern_enum_t type = P_FLASH;
+    int timestamp = -1;
+    unsigned int delay = 0, period = 0;
+
+
+    //Processing the received character array
+    p = strtok (s, ",");
+    while(p != NULL)
+    {
+        switch(i){
+        case 0: {
+            sscanf(p, "%d", &type);
+            pc.printf("%d\r\n", type);
+            if(strcmp(p, "flash") == 0)
+            {
+                type = P_FLASH;
+                delay = 25;
+            }
+            else if(strcmp(p, "flash_slow") == 0)
+            {
+                type = P_FLASH;
+                delay = 100;
+            }
+            else if(strcmp(p, "wave") == 0)
+            {
+                type = P_WAVE;
+                delay = 25;
+            }
+            else if(strcmp(p, "wave_slow") == 0)
+            {
+                type = P_WAVE;
+                delay = 100;
+            }
+            else if(strcmp(p, "fade") == 0)
+            {
+                type = P_FADE;
+                delay = 25;
+            }
+            else if(strcmp(p, "on") == 0)
+            {
+                type = P_ON;
+                delay = 25;
+            }
+            else{
+                pc.printf("Pattern does not exist in the dictionary\r\n");
+                return;
+            }
+            break;}
+        case 1:{
+            sscanf(p, "%d", &red);
+            pc.printf("%d\r\n", red);
+            break;}
+        case 2:{
+            sscanf(p, "%d", &green);
+            pc.printf("%d\r\n", green);
+            break;}
+        case 3:{
+            sscanf(p, "%d", &blue);
+            pc.printf("%d\r\n", blue);
+            break;}
+        case 4:{
+            break;}
+        case 5:{
+            break;}
+        case 6:{
+            sscanf(p, "%d", &timestamp);
+            pc.printf("%d\r\n", timestamp);
+            break;}
+        case 7:{
+            sscanf(p, "%d", &period);
+            pc.printf("%d\r\n", period);
+            break;}
+        default:{
+            pc.printf("Invalid string received\r\n");
+            return;}
+        }
+        i++;
+        p = strtok(NULL, ",");
+        }//End of while
+
+    //Converting int to uint8_t for r, g, b 
+
+    uint32_t redUint, greenUint, blueUint;
+
+    redUint = red;
+    greenUint = green;
+    blueUint = blue;
+
+    create_pattern(type, redUint, greenUint, blueUint, delay, period);        
 }
 
 int rf_receive(char *data, uint8_t maxLength)
@@ -106,37 +192,25 @@ void getColor(uint32_t *R,uint32_t *G,uint32_t *B,std::string str)
 int main()
 {
     pc.baud(9600);
-    uint32_t R,G,B;
     clear_strip();
+    
+    //tlc.setLED(0, 0, 65535, 65535);
+//    tlc.setLED(1, 0, 65535, 65535);
+//    tlc.write();
+//    wait(3);
+//    clear_strip();
+    create_pattern(P_FADE, 65535, 0, 65535, 25, 2000);
     
     while(1)
     {
         rxLen = rf_receive(rxBuffer, 128);
-        if(rxLen > 0 && rxBuffer[0] == 'x') {
-            char* rxBuffer1 = &rxBuffer[1];
-            pc.printf("Received string %s \r\n",rxBuffer);
-            std::vector<std::string> msg;
-            /*split the buffer based on the delimiter ',' and save into extract*/
-            msg = split(std::string(rxBuffer1),'/',msg);
-            int timestamp = std::atoi(msg[0].c_str());
-            if(timestamp % 75 == 50)  
+        if(rxLen > 0)
+        { 
+            if(rxBuffer[0] == ID) 
             {
-                getColor(&R,&G,&B,"G");
-                nonaddr_ff(R, G, B, 50, 1000);
-            }
-            else if(timestamp % 75 == 20)
-            {
-                getColor(&R,&G,&B,"G");
-                nonaddr_ff(R, G, B, 200, 2000);
-            }
-            else if(timestamp %75 == 25)
-            {
-//                getColor(&R,&G,&B,"B");
-                nonaddr_wave(DIR_NONE, 400, 45000, 65535, 500, 1000);
-            }
-            else if(timestamp %75 == 65)
-            {
-                nonaddr_bwave(DIR_NONE, 400, 5000, 270, 500, 1000);
+                char* rxBuffer1 = &rxBuffer[1];
+                pc.printf("Received string %s \r\n",rxBuffer);
+                parser(rxBuffer1);
             }
         }
     }

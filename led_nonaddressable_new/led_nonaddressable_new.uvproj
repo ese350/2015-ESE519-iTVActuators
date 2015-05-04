@@ -346,9 +346,9 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls>--gnu --no_rtti </MiscControls>
-              <Define> TARGET_LPC1768,  TARGET_M3,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC176X,  TARGET_MBED_LPC1768,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M3,  ARM_MATH_CM3,  MBED_BUILD_TIMESTAMP=1429834155.92,  __MBED__=1,  __ASSERT_MSG, </Define>
+              <Define> TARGET_LPC1768,  TARGET_M3,  TARGET_CORTEX_M,  TARGET_NXP,  TARGET_LPC176X,  TARGET_MBED_LPC1768,  TOOLCHAIN_ARM_STD,  TOOLCHAIN_ARM,  __CORTEX_M3,  ARM_MATH_CM3,  MBED_BUILD_TIMESTAMP=1430777851.7,  __MBED__=1,  __ASSERT_MSG, </Define>
               <Undefine></Undefine>
-              <IncludePath>  .;  MRF24J40;  LPD8806;  mbed;  mbed/TARGET_LPC1768;  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD;  mbed/TARGET_LPC1768/TARGET_NXP;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/TARGET_MBED_LPC1768;  TLC59711;  TLC59711/SWSPI;  </IncludePath>
+              <IncludePath>  .;  MRF24J40;  mbed;  mbed/TARGET_LPC1768;  mbed/TARGET_LPC1768/TOOLCHAIN_ARM_STD;  mbed/TARGET_LPC1768/TARGET_NXP;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X;  mbed/TARGET_LPC1768/TARGET_NXP/TARGET_LPC176X/TARGET_MBED_LPC1768;  TLC59711;  TLC59711/SWSPI;  </IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -425,13 +425,6 @@
               <FileName>MRF24J40.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>MRF24J40/MRF24J40.cpp</FilePath>
-              
-            </File>
-          
-            <File>
-              <FileName>LPD8806.cpp</FileName>
-              <FileType>8</FileType>
-              <FilePath>LPD8806/LPD8806.cpp</FilePath>
               
             </File>
           

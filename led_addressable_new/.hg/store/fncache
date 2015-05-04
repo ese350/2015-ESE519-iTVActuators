@@ -1,4 +1,5 @@
 data/LPD8806/LPD8806.cpp.i
+data/led_addressable_new.lib.i
 data/nonaddressable.cpp.i
 data/main.h.i
 data/LPD8806/LPD8806.h.i
@@ -11,3 +12,4 @@ data/pattern_map.cpp.i
 data/mbed-rtos.lib.i
 data/mbed.bld.i
 data/led_patterns.cpp.i
+data/testmain.cpp.i
